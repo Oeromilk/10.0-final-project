@@ -12,7 +12,6 @@ var FixedHeader = React.createClass({
             <li><a className="glyphicon glyphicon-stats" href="#"></a></li>
             <li><a className="glyphicon glyphicon-fire" href="#"></a></li>
             <li><a className="glyphicon glyphicon-calendar" href="#"></a></li>
-
           </ul>
           <ul className="nav navbar-nav navbar-right">
             <li><a href="#login/" role="button">Log In</a></li>
