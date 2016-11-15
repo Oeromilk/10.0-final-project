@@ -24,7 +24,7 @@ function logIn(loginInfo, router){
 var url = 'http://gd2.mlb.com/components/game/mlb/year_2015/month_04/day_01/master_scoreboard.json';
 
 $.get(url).then(function(data){
-  console.log(data);
+  console.log(data.data.games.game);
 });
 
 module.exports = {
