@@ -2,6 +2,7 @@ var React = require('react');
 
 var FixedHeader = React.createClass({
   render: function(){
+    var username = JSON.parse(localStorage.getItem('shelfUsername'));
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid">
@@ -11,14 +12,14 @@ var FixedHeader = React.createClass({
           <ul className="nav navbar-nav">
             <li><a className="glyphicon glyphicon-stats" href="#"></a></li>
             <li><a className="glyphicon glyphicon-fire" href="#"></a></li>
-            <li><a className="glyphicon glyphicon-calendar" href="#"></a></li>
+            <li><a className="glyphicon glyphicon-calendar" href="#date-picker/"></a></li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#login/" role="button">Log In</a></li>
+            <li><a href="#login/" role="button">Sign In</a></li>
             <li><a href="#signup/" role="button">Sign Up</a></li>
             <li><a className="glyphicon glyphicon-off" href="#"></a></li>
           </ul>
-          <p className="navbar-text navbar-right">Signed in as: USERNAME HERE</p>
+          <p className="navbar-text navbar-right">Signed in as: {username}</p>
         </div>
       </nav>
     )

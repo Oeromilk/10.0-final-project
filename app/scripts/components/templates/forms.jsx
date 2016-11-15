@@ -1,19 +1,36 @@
 var React = require('react');
 
 var LogInForm = React.createClass({
+  getInitialState: function(){
+    return {
+      'username': '',
+      'password': ''
+    };
+  },
+  handleInputChange: function(e){
+    var target = e.target;
+    var userLogin = {};
+    userLogin[target.name] = target.value;
+    this.setState(userLogin);
+  },
+  handleSignIn: function(e){
+    e.preventDefault();
+
+    this.props.handleSignIn(this.state);
+  },
   render: function(){
     return (
-      <form className="form-horizontal well">
+      <form onSubmit={this.handleSignIn} className="form-horizontal well">
         <div className="form-group">
-          <label htmlFor="userEmail" className="col-sm-2 control-label">Email</label>
+          <label htmlFor="username" className="col-sm-2 control-label">User Name</label>
           <div className="col-sm-10">
-            <input type="email" className="form-control" id="userEmail" placeholder="Email" />
+            <input onChange={this.handleInputChange} type="text" className="form-control" id="username" name="username" placeholder="User Name" value={this.state.username}/>
           </div>
         </div>
         <div className="form-group">
           <label htmlFor="userPassword" className="col-sm-2 control-label">Password</label>
           <div className="col-sm-10">
-            <input type="password" className="form-control" id="userPassword" placeholder="Password" />
+            <input onChange={this.handleInputChange} type="password" className="form-control" id="userPassword" name="password" placeholder="Password" value={this.state.password}/>
           </div>
         </div>
         <div className="form-group">
@@ -35,10 +52,14 @@ var SignUpForm = React.createClass({
     var newUser = {};
     newUser[target.name] = target.value;
     this.setState(newUser);
-    console.log(newUser);
+    // console.log(newUser);
+
+    this.props.user.set(target.name, target.value);
   },
-  handleSignUp: function(){
-    console.log('props', this.props.user);
+  handleSignUp: function(e){
+    e.preventDefault();
+
+    this.props.handleSignUp(this.props.user);
   },
   render: function(){
     return (
@@ -55,6 +76,12 @@ var SignUpForm = React.createClass({
               <label htmlFor="lastName" className="col-sm-2 control-label">Last Name</label>
               <div className="col-sm-10">
                 <input onChange={this.handleInputChange} type="text" className="form-control" id="lastName" name="lastName" placeholder="Last Name" value={this.state.lastName}/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="userName" className="col-sm-2 control-label">User Name</label>
+              <div className="col-sm-10">
+                <input onChange={this.handleInputChange} type="text" className="form-control" id="userName" name="username" placeholder="User Name" value={this.state.username}/>
               </div>
             </div>
             <div className="form-group">
