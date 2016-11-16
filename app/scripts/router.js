@@ -34,7 +34,7 @@ var AppRouter = Backbone.Router.extend({
   },
   datePicker: function(){
     ReactDom.render(
-      React.createElement(DatePickerContainer),
+      React.createElement(DatePickerContainer, {router: this}),
       document.getElementById('app')
     );
   }

@@ -21,13 +21,16 @@ function logIn(loginInfo, router){
     });
 }
 
-var url = 'http://gd2.mlb.com/components/game/mlb/year_2015/month_04/day_01/master_scoreboard.json';
+var mlbUrl = 'http://gd2.mlb.com/components/game/mlb/';
 
-$.get(url).then(function(data){
-  console.log(data.data.games.game);
-});
+function setUrl(year, month, day){
+  var dateUrl = mlbUrl + 'year_' + year + '/month_' + month + '/day_' + day + '/master_scoreboard.json';
+
+  return dateUrl;
+}
 
 module.exports = {
   logIn: logIn,
-  setupHeaders: setupHeaders
+  setupHeaders: setupHeaders,
+  setUrl: setUrl
 };
