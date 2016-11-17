@@ -12,19 +12,25 @@ var GameListing = React.createClass({
     }
   },
   render: function(){
+    var self = this;
     var gameDayModels = this.state.collection.models;
 
     var gameDayListing = gameDayModels.map(function(gameDay){
-      console.log(gameDay);
+      // var homeRuns = gameDay.get('home_runs');
+      // if(typeof homeRuns === 'undefined'){
+      //   console.log('No Home Runs for this game.');
+      // } else if(typeof homeRuns === 'object' || Array.isArray(homeRuns)) {
+      //   console.log(homeRuns);
+      // }
       return (
-        <button key={gameDay.cid} type="button" className="list-group-item">
+        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('venue') + '/'} className="list-group-item"  >
           <h4>
-            <div className="text-left">{gameDay.get('home_team_city')} {gameDay.get('home_team_name')}</div>
-            <div className="text-center">vs</div>
-            <div className="text-right">{gameDay.get('away_team_city')} {gameDay.get('away_team_name')}</div>
+            {gameDay.get('home_team_city')} {gameDay.get('home_team_name')}
+            vs
+            {gameDay.get('away_team_city')} {gameDay.get('away_team_name')}
           </h4>
           <h3 className="text-center">{gameDay.get('venue')}</h3>
-        </button>
+        </a>
       )
     });
     return (
@@ -85,7 +91,7 @@ var DatePickerContainer = React.createClass({
     var self = this;
     var collection = this.state.collection;
     var dateUrl = setUrl(splitDate[0], splitDate[1], splitDate[2]);
-
+    localStorage.setItem('dateUrl', JSON.stringify(dateUrl));
 
     $.get(dateUrl).then(function(response){
       var data = response.data.games.game;

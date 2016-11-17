@@ -6,13 +6,15 @@ var LandingContainer = require('./components/landing.jsx').LandingContainer;
 var LogInContainer = require('./components/login.jsx').LogInContainer;
 var SignUpContainer = require('./components/signup.jsx').SignUpContainer;
 var DatePickerContainer = require('./components/date_picker.jsx').DatePickerContainer;
+var GameDayDetailContainer = require('./components/game_day_detail.jsx').GameDayDetailContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'login/': 'login',
     'signup/': 'signup',
-    'date-picker/': 'datePicker'
+    'date-picker/': 'datePicker',
+    'date-picker/:id/': 'gameDayDetail'
   },
   index: function(){
     ReactDom.render(
@@ -37,6 +39,12 @@ var AppRouter = Backbone.Router.extend({
       React.createElement(DatePickerContainer, {router: this}),
       document.getElementById('app')
     );
+  },
+  gameDayDetail: function(){
+    ReactDom.render(
+      React.createElement(GameDayDetailContainer),
+      document.getElementById('app')
+    )
   }
 });
 
