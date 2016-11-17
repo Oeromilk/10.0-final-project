@@ -11,14 +11,40 @@ var HomeRunListing = React.createClass({
     }
   },
   render: function(){
+    //var theModel = this.state.collection.get('c1');
+    //console.log('the model', theModel.get('home_runs'));
     var gameDayModels = this.state.collection.models;
-    var homeRunList = gameDayModels.map(function(data){
-      console.log('length', data.get('home_runs'));
-      return data.get('home_runs')
+    var homeRunList = gameDayModels.map(function(model){
+      return model.get('home_runs')
     });
-    console.log(homeRunList);
+    var homeRunArrays = homeRunList.map(function(homeRun){
+      if (typeof homeRun != 'undefined' && homeRun.player.toString() != '[object Object]'){
+        return homeRun
+      }
+    });
+    var homeRunArrView = homeRunArrays.map(function(homeRun){
+      if(typeof homeRun != 'undefined'){
+        var test = homeRun.player.map(function(data){
+          return <h3>{data.first}  {data.last}  {data.inning}</h3>
+        })
+      }
+      return test
+    });
+    var homeRunView = homeRunList.map(function(homeRun){
+      if(typeof homeRun === 'undefined'){
+        return <h3>No Home Runs for this game</h3>
+      } else if(homeRun.player.toString() === '[object Object]' && !Array.isArray(homeRun.player)) {
+        return <h3>{homeRun.player.first} {homeRun.player.last} {homeRun.player.inning}</h3>
+      }
+    });
     return (
-      <h1>test</h1>
+      <div>
+        <h1>test</h1>
+        <div>
+          {homeRunView}
+          {homeRunArrView}
+        </div>
+      </div>
     )
   }
 })

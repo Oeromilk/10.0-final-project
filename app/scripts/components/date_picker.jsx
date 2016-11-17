@@ -16,12 +16,7 @@ var GameListing = React.createClass({
     var gameDayModels = this.state.collection.models;
 
     var gameDayListing = gameDayModels.map(function(gameDay){
-      // var homeRuns = gameDay.get('home_runs');
-      // if(typeof homeRuns === 'undefined'){
-      //   console.log('No Home Runs for this game.');
-      // } else if(typeof homeRuns === 'object' || Array.isArray(homeRuns)) {
-      //   console.log(homeRuns);
-      // }
+      console.log(gameDay);
       return (
         <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('venue') + '/'} className="list-group-item"  >
           <h4>
