@@ -1,11 +1,15 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
 
-function setupHeaders(){
+function setupHeaders(token){
   $.ajaxSetup({
     beforeSend: function(xhr){
       xhr.setRequestHeader("X-Parse-Application-Id", "dalaran");
       xhr.setRequestHeader("X-Parse-REST-API-Key", "stormwind");
+
+      if(token){
+        xhr.setRequestHeader("X=Parse-Session-Token", token);
+      }
     }
   });
 }

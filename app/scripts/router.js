@@ -50,7 +50,7 @@ var AppRouter = Backbone.Router.extend({
   },
   claimForm: function(){
     ReactDom.render(
-      React.createElement(ClaimFormContainer),
+      React.createElement(ClaimFormContainer, {router: this}),
       document.getElementById('app')
     );
   }

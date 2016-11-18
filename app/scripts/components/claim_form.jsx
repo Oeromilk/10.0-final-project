@@ -1,23 +1,40 @@
 var React = require('react');
 
 var Template = require('./templates/template.jsx').Template;
+var ClaimedHomerun = require('../models/claimed_homerun.js').ClaimedHomerun;
+var ClaimedHomerunCollection = require('../models/claimed_homerun.js').ClaimedHomerunCollection;
+var setupHeaders = require('../parse_utility.js').setupHeaders;
 
 var ClaimForm = React.createClass({
+  getInitialState: function(){
+    return this.props.model.toJSON()
+  },
+  handleInputChange: function(e){
+    var target = e.target;
+    var newHomerun = {};
+    newHomerun[target.name] = target.value;
+    this.setState(newHomerun);
+  },
+  handleForm: function(e){
+    e.preventDefault();
+    console.log(this.state);
+    this.props.handleForm(this.state);
+  },
   render: function(){
     return (
-      <form className="col-md-6 col-md-offset-3">
+      <form onSubmit={this.handleForm} className="col-md-6 col-md-offset-3">
         <h2>Seat Information</h2>
         <div className="form-inline well">
-          <label htmlFor="seatSection">Section</label>
-          <input type="text" className="form-control" id="seatSection" placeholder="Seat Section" />
-          <label htmlFor="seatRow">Row</label>
-          <input type="text" className="form-control" id="seatRow" placeholder="Seat Row" />
-          <label htmlFor="seatNumber">Number</label>
-          <input type="text" className="form-control" id="seatNumber" placeholder="Seat Number" />
+          <label htmlFor="seatSection">Section </label>
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatSection" id="seatSection" placeholder="Seat Section" value={this.state.seatSection} />
+          <label htmlFor="seatRow">Row </label>
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatRow" id="seatRow" placeholder="Seat Row" value={this.state.seatRow} />
+          <label htmlFor="seatNumber">Number </label>
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatNumber" id="seatNumber" placeholder="Seat Number" value={this.state.seatNumber} />
         </div>
         <div className="form-inline well">
-          <label htmlFor="parkSelector">Select Your Park</label>
-          <select id="parkSelector">
+          <label htmlFor="parkSelector">Select Your Park </label>
+          <select onChange={this.handleInputChange} id="parkSelector" name="parkName" value={this.state.parkName}>
             <option>Angel Stadium of Anaheim</option>
             <option>AT&T Park</option>
             <option>Busch Stadium</option>
@@ -49,15 +66,15 @@ var ClaimForm = React.createClass({
             <option>Wrigley Field</option>
             <option>Yanke Stadium</option>
           </select>
-          <label htmlFor="dateSelector">Select Date</label>
-          <input type="date" className="form-control" />
+          <label htmlFor="dateSelector">Select Date </label>
+          <input onChange={this.handleInputChange} type="date" name="date" className="form-control" value={this.state.date} />
         </div>
         <h2>Batter Information</h2>
         <div className="form-inline well">
-          <label htmlFor="firstName">First Name</label>
-          <input type="text" className="form-control" id="firstName" placeholder="First Name" />
-          <label htmlFor="lastName">Last Name</label>
-          <input type="text" className="form-control" id="lastName" placeholder="Last Name" />
+          <label htmlFor="firstName">First Name </label>
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="batterFirstName" id="firstName" placeholder="First Name" value={this.state.batterFirstName} />
+          <label htmlFor="lastName">Last Name </label>
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="batterLastName" id="lastName" placeholder="Last Name" value={this.state.batterLastname} />
         </div>
         <h2>Image Upload</h2>
           <div className="form-group well">
@@ -77,10 +94,26 @@ var ClaimForm = React.createClass({
 });
 
 var ClaimFormContainer = React.createClass({
+  getInitialState: function(){
+    return {
+      model: new ClaimedHomerun(),
+      collection: new ClaimedHomerunCollection()
+    }
+  },
+  handleForm: function(formData){
+    var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
+    var collection = this.state.collection;
+    var router = this.props.router;
+
+    setupHeaders(sessionToken);
+    collection.create(formData).then(function(){
+      router.navigate('date-picker/', {trigger: true});
+    });
+  },
   render: function(){
     return (
       <Template>
-        <ClaimForm />
+        <ClaimForm model={this.state.model} handleForm={this.handleForm}/>
       </Template>
     )
   }
