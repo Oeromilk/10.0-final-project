@@ -16,9 +16,8 @@ var GameListing = React.createClass({
     var gameDayModels = this.state.collection.models;
 
     var gameDayListing = gameDayModels.map(function(gameDay){
-      console.log(gameDay);
       return (
-        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('venue') + '/'} className="list-group-item"  >
+        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('venue') + '/'} className="list-group-item" >
           <h4>
             {gameDay.get('home_team_city')} {gameDay.get('home_team_name')}
             vs
