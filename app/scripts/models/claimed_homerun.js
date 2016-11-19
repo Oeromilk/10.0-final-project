@@ -11,7 +11,8 @@ var ClaimedHomerun = Backbone.Model.extend({
     'batterLastName': '',
     'ticketStub': '',
     'baseBallImage': ''
-  }
+  },
+  urlRoot: 'https://grabow.herokuapp.com/classes/ClaimedHomerun'
 });
 
 var ClaimedHomerunCollection = Backbone.Collection.extend({

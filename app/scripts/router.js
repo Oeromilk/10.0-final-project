@@ -8,6 +8,7 @@ var SignUpContainer = require('./components/signup.jsx').SignUpContainer;
 var DatePickerContainer = require('./components/date_picker.jsx').DatePickerContainer;
 var GameDayDetailContainer = require('./components/game_day_detail.jsx').GameDayDetailContainer;
 var ClaimFormContainer = require('./components/claim_form.jsx').ClaimFormContainer;
+var UserListingContainer = require('./components/user_listing.jsx').UserListingContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
@@ -16,7 +17,8 @@ var AppRouter = Backbone.Router.extend({
     'signup/': 'signup',
     'date-picker/': 'datePicker',
     'date-picker/:id/': 'gameDayDetail',
-    'claim-form/': 'claimForm'
+    'claim-form/': 'claimForm',
+    'user-listing/': 'userListing'
   },
   index: function(){
     ReactDom.render(
@@ -53,6 +55,12 @@ var AppRouter = Backbone.Router.extend({
       React.createElement(ClaimFormContainer, {router: this}),
       document.getElementById('app')
     );
+  },
+  userListing: function(){
+    ReactDom.render(
+      React.createElement(UserListingContainer),
+      document.getElementById('app')
+    )
   }
 });
 

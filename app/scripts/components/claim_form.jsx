@@ -13,11 +13,12 @@ var ClaimForm = React.createClass({
     var target = e.target;
     var newHomerun = {};
     newHomerun[target.name] = target.value;
+
     this.setState(newHomerun);
   },
   handleForm: function(e){
     e.preventDefault();
-    console.log(this.state);
+
     this.props.handleForm(this.state);
   },
   render: function(){
@@ -101,14 +102,13 @@ var ClaimFormContainer = React.createClass({
     }
   },
   handleForm: function(formData){
-    var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
     var collection = this.state.collection;
     var router = this.props.router;
+    var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
+    setupHeaders(sessionToken)
 
-    setupHeaders(sessionToken);
-    collection.create(formData).then(function(){
-      router.navigate('date-picker/', {trigger: true});
-    });
+    collection.create(formData);
+    // router.navigate('user-listing/', {trigger: true});
   },
   render: function(){
     return (
