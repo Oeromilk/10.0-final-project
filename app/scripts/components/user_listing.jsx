@@ -7,13 +7,29 @@ var setupHeaders = require('../parse_utility.js').setupHeaders;
 var UserHomeRunList = React.createClass({
   render: function(){
     var userList = this.props.userListing.map(function(homerun){
-      return <li key={homerun.objectId}>{homerun.batterFirstName}{homerun.batterLastName}</li>
+      console.log(homerun);
+      return (
+        <div key={homerun.objectId} className="col-md-3 well">
+          <div>
+            <h4>Homerun Batter: </h4>
+            {homerun.batterFirstName}{homerun.batterLastName}
+          </div>
+          <div>
+            <h4>Seating Information:</h4>
+            Section: {homerun.seatSection} Row: {homerun.seatRow} Number: {homerun.seatNumber}
+          </div>
+          <div>
+            <h4>Ball Park:</h4>
+            {homerun.parkName} On: {homerun.date}
+          </div>
+        </div>
+      )
     })
     return (
-      <div>
-        <ul>
+      <div className="row">
+        <div className="col-md-12">
           {userList}
-        </ul>
+        </div>
       </div>
     )
   }

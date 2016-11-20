@@ -106,9 +106,9 @@ var ClaimFormContainer = React.createClass({
     var router = this.props.router;
     var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
     setupHeaders(sessionToken)
-
+    console.log(formData);
     collection.create(formData);
-    // router.navigate('user-listing/', {trigger: true});
+
   },
   render: function(){
     return (
