@@ -128,9 +128,10 @@ var ClaimFormContainer = React.createClass({
     var router = this.props.router;
     var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
     setupHeaders(sessionToken)
-    
-    collection.create(formData);
+     console.warn(collection);
 
+    collection.create(new ClaimedHomerun(formData));
+    console.log(collection.first().isNew());
   },
   render: function(){
     return (

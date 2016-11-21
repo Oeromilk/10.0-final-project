@@ -8,7 +8,7 @@ function setupHeaders(token){
       xhr.setRequestHeader("X-Parse-REST-API-Key", "stormwind");
 
       if(token){
-        xhr.setRequestHeader("X=Parse-Session-Token", token);
+        xhr.setRequestHeader("X-Parse-Session-Token", token);
       }
     }
   });

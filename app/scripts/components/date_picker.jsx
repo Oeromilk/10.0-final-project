@@ -89,7 +89,8 @@ var DatePickerContainer = React.createClass({
 
     $.get(dateUrl).then(function(response){
       var data = response.data.games.game;
-      self.setState({collection: collection.add(data)});
+      collection.add(data)
+      self.setState({collection: collection});
     });
   },
   render: function(){
