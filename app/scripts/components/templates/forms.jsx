@@ -61,6 +61,10 @@ var SignUpForm = React.createClass({
 
     this.props.handleSignUp(this.props.user);
   },
+  handleUserAvatar: function(e){
+    var image = e.target.files[0];
+    this.props.handleUserAvatar(image);
+  },
   render: function(){
     return (
       <div className="row">
@@ -94,6 +98,12 @@ var SignUpForm = React.createClass({
               <label htmlFor="signUpPassword" className="col-sm-2 control-label">Password</label>
               <div className="col-sm-10">
                 <input onChange={this.handleInputChange} type="password" className="form-control" id="signUpPassword" name="password" placeholder="Password" value={this.state.password}/>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="userAvatar" className="col-sm-2 control-label">Avatar Image</label>
+              <div className="col-sm-10">
+                <input onChange={this.handleUserAvatar} type="file" className="form-control" id="userAvatar" />
               </div>
             </div>
             <div className="form-group">

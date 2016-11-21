@@ -1,9 +1,12 @@
 var React = require('react');
 
+//React Components
 var Template = require('./templates/template.jsx').Template;
+//Backbone Models and Utility
 var ClaimedHomerun = require('../models/claimed_homerun.js').ClaimedHomerun;
 var ClaimedHomerunCollection = require('../models/claimed_homerun.js').ClaimedHomerunCollection;
 var setupHeaders = require('../parse_utility.js').setupHeaders;
+var FileModel = require('../models/file_upload.js').File;
 
 var ClaimForm = React.createClass({
   getInitialState: function(){
@@ -20,6 +23,24 @@ var ClaimForm = React.createClass({
     e.preventDefault();
 
     this.props.handleForm(this.state);
+  },
+  handleTicketStub: function(e){
+    var image = e.target.files[0];
+    var file = this.props.fileModel;
+    file.set('name', image.name);
+    file.set('data', image);
+    file.save().done(function(){
+      console.log(file);
+    });
+  },
+  handleBaseballImage: function(e){
+    var image = e.target.files[0];
+    var file = this.props.fileModel;
+    file.set('name', image.name);
+    file.set('data', image);
+    file.save().done(function(){
+      console.log(file);
+    });
   },
   render: function(){
     return (
@@ -80,12 +101,12 @@ var ClaimForm = React.createClass({
         <h2>Image Upload</h2>
           <div className="form-group well">
             <label htmlFor="ticketStub">Ticket Stub Image</label>
-            <input type="file" id="ticketStub" />
+            <input onChange={this.handleTicketStub} type="file" id="ticketStub" />
             <p className="help-block">Upload an image of your ticket stub to verify your seat.</p>
           </div>
           <div className="form-group well">
             <label htmlFor="baseBallImage">BaseBall Image (optional)</label>
-            <input type="file" id="baseBallImage" />
+            <input onChange={this.handleBaseballImage} type="file" id="baseBallImage" />
             <p className="help-block">Upload an image of your baseball you caught.</p>
           </div>
           <button className="btn btn-primary" type="submit">Claim HomeRun!</button>
@@ -98,7 +119,8 @@ var ClaimFormContainer = React.createClass({
   getInitialState: function(){
     return {
       model: new ClaimedHomerun(),
-      collection: new ClaimedHomerunCollection()
+      collection: new ClaimedHomerunCollection(),
+      fileModel: new FileModel()
     }
   },
   handleForm: function(formData){
@@ -106,14 +128,14 @@ var ClaimFormContainer = React.createClass({
     var router = this.props.router;
     var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
     setupHeaders(sessionToken)
-    console.log(formData);
+    
     collection.create(formData);
 
   },
   render: function(){
     return (
       <Template>
-        <ClaimForm model={this.state.model} handleForm={this.handleForm}/>
+        <ClaimForm fileModel={this.state.fileModel} model={this.state.model} handleForm={this.handleForm}/>
       </Template>
     )
   }

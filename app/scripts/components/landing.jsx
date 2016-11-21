@@ -23,7 +23,7 @@ var Article = React.createClass({
             been caught and gone to souvenir city. Shelf is a place to keep track of your homeruns
             that you have caught as well as seeing other users and the homeruns they have caught.
             <br />
-            <img src={"../../../images/rod-3000th-hit-souvenir-baseball.jpg"} alt="A Rod's 3000th hit" className="img-rounded" />
+            <img src={"../../images/rod-3000th-hit-souvenir-baseball.jpg"} alt="A Rod's 3000th hit" className="img-rounded" />
           </div>
           <div className="col-md-6">
             Watching my favorite team play the yankees in 2015, I saw history being made
@@ -55,7 +55,8 @@ var Article = React.createClass({
             will then be shown a form to fill out some information to help us track where
             people are sitting in the stadium when the ball was caught.
             <br />
-            Follow the button below to get started!
+            Click the button below to get started!
+            <br />
             <a href="#signup/" className="btn btn-primary">Take me to sign up</a>
           </div>
         </div>
