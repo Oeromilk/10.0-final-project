@@ -17,7 +17,7 @@ var GameListing = React.createClass({
 
     var gameDayListing = gameDayModels.map(function(gameDay){
       return (
-        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('venue') + '/'} className="list-group-item" >
+        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('home_team_city') + '/'} className="list-group-item" >
           <h4>
             {gameDay.get('home_team_city')} {gameDay.get('home_team_name')}
             vs
@@ -88,6 +88,9 @@ var DatePickerContainer = React.createClass({
     localStorage.setItem('dateUrl', JSON.stringify(dateUrl));
 
     $.get(dateUrl).then(function(response){
+      if(!response.data.games.game){
+        alert('Oops! No games on that day, select a new date.')
+      };
       var data = response.data.games.game;
       collection.add(data)
       self.setState({collection: collection});

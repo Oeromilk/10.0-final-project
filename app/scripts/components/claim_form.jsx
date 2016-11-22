@@ -25,12 +25,14 @@ var ClaimForm = React.createClass({
     this.props.handleForm(this.state);
   },
   handleTicketStub: function(e){
+    var self = this;
     var image = e.target.files[0];
     var file = this.props.fileModel;
     file.set('name', image.name);
     file.set('data', image);
     file.save().done(function(){
       console.log(file);
+      self.setState({'ticketStub': file.get('url')})
     });
   },
   handleBaseballImage: function(e){
@@ -75,7 +77,7 @@ var ClaimForm = React.createClass({
             <option>Miller Park</option>
             <option>Minute Maid Park</option>
             <option>Nationals Park</option>
-            <option>Oaklan Coliseum</option>
+            <option>Oakland Coliseum</option>
             <option>Oriole Park at Camden Yards</option>
             <option>Petco Park</option>
             <option>PNC Park</option>
@@ -127,13 +129,16 @@ var ClaimFormContainer = React.createClass({
     var collection = this.state.collection;
     var router = this.props.router;
     var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
+    var sessionId = JSON.parse(localStorage.getItem('shelfObjectId'));
+    console.log('sessionId', sessionId);
     setupHeaders(sessionToken)
-     console.warn(collection);
 
     collection.create(new ClaimedHomerun(formData));
-    console.log(collection.first().isNew());
+
+    router.navigate('user-listing/', {trigger: true});
   },
   render: function(){
+    console.log(this.props.nameId);
     return (
       <Template>
         <ClaimForm fileModel={this.state.fileModel} model={this.state.model} handleForm={this.handleForm}/>

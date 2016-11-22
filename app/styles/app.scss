@@ -5,6 +5,10 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 // Import Bootstrap
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
+//Google fonts
+@import url('https://fonts.googleapis.com/css?family=BioRhyme:300|Catamaran:500|Neuton:200');
+
+
 
 *,
 *::before,
@@ -18,4 +22,12 @@ body {
 
 img {
   max-width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, input {
+  font-family: 'Catamaran', sans-serif;
+}
+
+p, span, a {
+  font-family: 'Neuton', serif;
 }

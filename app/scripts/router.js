@@ -18,7 +18,7 @@ var AppRouter = Backbone.Router.extend({
     'signup/': 'signup',
     'date-picker/': 'datePicker',
     'date-picker/:id/': 'gameDayDetail',
-    'claim-form/': 'claimForm',
+    'claim-form/:id/': 'claimForm',
     'user-listing/': 'userListing',
     'top-users/': 'topUsers'
   },
@@ -46,15 +46,15 @@ var AppRouter = Backbone.Router.extend({
       document.getElementById('app')
     );
   },
-  gameDayDetail: function(){
+  gameDayDetail: function(gameId){
     ReactDom.render(
-      React.createElement(GameDayDetailContainer),
+      React.createElement(GameDayDetailContainer, {gameId: gameId}),
       document.getElementById('app')
     );
   },
-  claimForm: function(){
+  claimForm: function(nameId){
     ReactDom.render(
-      React.createElement(ClaimFormContainer, {router: this}),
+      React.createElement(ClaimFormContainer, {router: this, nameId: nameId}),
       document.getElementById('app')
     );
   },
