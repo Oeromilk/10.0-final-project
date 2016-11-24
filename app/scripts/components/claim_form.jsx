@@ -36,12 +36,14 @@ var ClaimForm = React.createClass({
     });
   },
   handleBaseballImage: function(e){
+    var self = this;
     var image = e.target.files[0];
     var file = this.props.fileModel;
     file.set('name', image.name);
     file.set('data', image);
     file.save().done(function(){
       console.log(file);
+      self.setState({'baseBallImage': file.get('url')})
     });
   },
   render: function(){
@@ -130,7 +132,6 @@ var ClaimFormContainer = React.createClass({
     var router = this.props.router;
     var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
     var sessionId = JSON.parse(localStorage.getItem('shelfObjectId'));
-    console.log('sessionId', sessionId);
     setupHeaders(sessionToken)
 
     collection.create(new ClaimedHomerun(formData));
@@ -138,7 +139,6 @@ var ClaimFormContainer = React.createClass({
     router.navigate('user-listing/', {trigger: true});
   },
   render: function(){
-    console.log(this.props.nameId);
     return (
       <Template>
         <ClaimForm fileModel={this.state.fileModel} model={this.state.model} handleForm={this.handleForm}/>
