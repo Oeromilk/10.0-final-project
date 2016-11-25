@@ -133,6 +133,8 @@ var ClaimFormContainer = React.createClass({
     var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
     var sessionId = JSON.parse(localStorage.getItem('shelfObjectId'));
     setupHeaders(sessionToken)
+    console.log(sessionId);
+    formData['claimedBy'] = {"__type": "Pointer", "className": "_User", "objectId": + sessionId };
 
     collection.create(new ClaimedHomerun(formData));
 

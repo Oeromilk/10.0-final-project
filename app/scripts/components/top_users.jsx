@@ -32,6 +32,7 @@ var TopUsersContainer = React.createClass({
     collection.fetch().then(function(response){
       self.setState({listingView: response.results});
     });
+    
   },
   render: function(){
     return (

@@ -10,7 +10,8 @@ var ClaimedHomerun = Backbone.Model.extend({
     'batterFirstName': '',
     'batterLastName': '',
     'ticketStub': '',
-    'baseBallImage': ''
+    'baseBallImage': '',
+    'claimedBy': {}
   },
   idAttribute: 'objectId'
 });
