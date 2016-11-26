@@ -21,6 +21,7 @@ function logIn(loginInfo, router){
       localStorage.setItem('shelfUsername', JSON.stringify(response.username));
       localStorage.setItem('shelfSession', JSON.stringify(response.sessionToken));
       localStorage.setItem('shelfObjectId', JSON.stringify(response.objectId));
+      localStorage.setItem('userInfo', JSON.stringify(response));
       console.log(response);
 
       router.navigate('#/', {trigger: true});

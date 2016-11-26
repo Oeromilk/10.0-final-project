@@ -49,8 +49,10 @@ var UserListingContainer = React.createClass({
   componentWillMount: function(){
     var self = this;
     var collection = this.state.collection;
-
+    var userId = JSON.parse(localStorage.getItem('shelfObjectId'));
+    collection.userId = userId;
     setupHeaders();
+
 
     collection.fetch().then(function(response){
 

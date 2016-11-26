@@ -18,7 +18,10 @@ var ClaimedHomerun = Backbone.Model.extend({
 
 var ClaimedHomerunCollection = Backbone.Collection.extend({
   model: ClaimedHomerun,
-  url: 'https://grabow.herokuapp.com/classes/ClaimedHomerun'
+  baseUrl: 'https://grabow.herokuapp.com/classes/ClaimedHomerun/',
+  url: function(){
+    return this.baseUrl + '?where={"claimedBy": ' + ' {"__type": "Pointer", "className": "_User", "objectId": "' + this.userId + '"}}';
+  }
 });
 
 module.exports = {

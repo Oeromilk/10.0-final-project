@@ -137,7 +137,11 @@ var ClaimFormContainer = React.createClass({
     console.log(sessionId);
     formData.claimedBy = {"__type": "Pointer", "className": "_User", "objectId": sessionId};
 
-     var user = new User({'objectId': sessionId});
+    var user = new User(JSON.parse(localStorage.getItem('userInfo')));
+    user.unset('createdAt');
+    user.unset('updatedAt');
+    user.unset('sessionToken');
+    user.unset('ACL');
 
     collection.create(formData);
     user.set("numberOfCatches", {"__op":"Increment","amount":1});
