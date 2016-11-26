@@ -22,6 +22,10 @@ var UserHomeRunList = React.createClass({
             <h4>Ball Park:</h4>
             {homerun.parkName} On: {homerun.date}
           </div>
+          <div>
+            <img src={homerun.baseBallImage} alt="Image of baseball" />
+            <img src={homerun.ticketStub} alt="Image of tickestub" />
+          </div>
         </div>
       )
     })
