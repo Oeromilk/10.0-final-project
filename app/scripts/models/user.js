@@ -6,8 +6,10 @@ var User = Backbone.Model.extend({
     'lastName': '',
     'username': '',
     'email': '',
-    'password': ''
+    'password': '',
+    'userAvatar': ''
   },
+  idAttribute: 'objectId',
   urlRoot: 'https://grabow.herokuapp.com/users',
   signUp: function(router){
     this.save();

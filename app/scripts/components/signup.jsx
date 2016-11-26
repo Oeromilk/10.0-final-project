@@ -16,12 +16,21 @@ var SignUpContainer = React.createClass({
     }
   },
   handleSignUp: function(user){
-    var router = this.props.router;
     setupHeaders();
-    user.signUp(router);
+
+    var router = this.props.router;
+
+    var file = this.state.fileModel;
+    file.set('name', this.state.avatar.name);
+    file.set('data', this.state.avatar);
+
+    file.save().done(function(){
+      user.set('userAvatar', file.get('url'));
+      user.signUp(router);
+    });
   },
   handleUserAvatar: function(image){
-    console.log(image);
+    this.setState({'avatar': image});
   },
   render: function(){
     return (

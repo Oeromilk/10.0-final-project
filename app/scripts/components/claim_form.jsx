@@ -7,6 +7,7 @@ var ClaimedHomerun = require('../models/claimed_homerun.js').ClaimedHomerun;
 var ClaimedHomerunCollection = require('../models/claimed_homerun.js').ClaimedHomerunCollection;
 var setupHeaders = require('../parse_utility.js').setupHeaders;
 var FileModel = require('../models/file_upload.js').File;
+var User = require('../models/user.js').User;
 
 var ClaimForm = React.createClass({
   getInitialState: function(){
@@ -134,11 +135,16 @@ var ClaimFormContainer = React.createClass({
     var sessionId = JSON.parse(localStorage.getItem('shelfObjectId'));
     setupHeaders(sessionToken)
     console.log(sessionId);
-    formData['claimedBy'] = {"__type": "Pointer", "className": "_User", "objectId": + sessionId };
+    formData.claimedBy = {"__type": "Pointer", "className": "_User", "objectId": sessionId};
 
-    collection.create(new ClaimedHomerun(formData));
+     var user = new User({'objectId': sessionId});
 
-    router.navigate('user-listing/', {trigger: true});
+    collection.create(formData);
+    user.set("numberOfCatches", {"__op":"Increment","amount":1});
+    user.save().then(function(){
+      router.navigate('user-listing/', {trigger: true});
+    });
+
   },
   render: function(){
     return (
