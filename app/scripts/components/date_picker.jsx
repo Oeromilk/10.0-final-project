@@ -1,9 +1,21 @@
 var React = require('react');
 var $ = require('jquery');
+var Modal = require('react-modal');
 
 var Template = require('./templates/template.jsx').Template;
 var setUrl = require('../parse_utility').setUrl;
 var GameDayCollection = require('../models/game_day.js').GameDayCollection;
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 var GameListing = React.createClass({
   getInitialState: function(){
@@ -17,7 +29,7 @@ var GameListing = React.createClass({
 
     var gameDayListing = gameDayModels.map(function(gameDay){
       return (
-        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('home_team_city') + '/'} className="list-group-item" >
+        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('home_team_city') + '/'} className="list-group-item hover-style" >
           <h4>
             {gameDay.get('home_team_city')} {gameDay.get('home_team_name')}
             vs
@@ -78,8 +90,22 @@ var DatePickerContainer = React.createClass({
   getInitialState: function(){
     return {
       date: '',
-      collection: new GameDayCollection()
+      collection: new GameDayCollection(),
+      modalIsOpen: false
     }
+  },
+  openModal: function() {
+    this.setState({modalIsOpen: true});
+  },
+  afterOpenModal: function() {
+    // references are now sync'd and can be accessed.
+    // #2B3A42
+    // #3F5765
+    // #BDD4DE
+    this.refs.subtitle.style.color = '#FF530D';
+  },
+  closeModal: function() {
+    this.setState({modalIsOpen: false});
   },
   handleDateChange: function(splitDate){
     var self = this;
@@ -89,12 +115,17 @@ var DatePickerContainer = React.createClass({
 
     $.get(dateUrl).then(function(response){
       if(!response.data.games.game){
-        alert('Oops! No games on that day, select a new date.')
+        self.openModal();
       };
       var data = response.data.games.game;
       collection.add(data)
       self.setState({collection: collection});
     });
+  },
+  componentWillMount: function(){
+    var req = new XMLHttpRequest();
+    req.open('GET', true);
+    req.setRequestHeader("Authorization", "");
   },
   render: function(){
     return (
@@ -104,6 +135,18 @@ var DatePickerContainer = React.createClass({
         </div>
         <DatePickerInput handleDateChange={this.handleDateChange} date={this.state.date} />
         <GameListing collection={this.state.collection}/>
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="No Games For That Date"
+          >
+
+            <h2 ref="subtitle">Oops!</h2>
+            <div ref="description">No there are no games on record for that date.<br/>Select another date.</div>
+            <button className="btn btn-default" onClick={this.closeModal}>close</button>
+          </Modal>
       </Template>
     )
   }

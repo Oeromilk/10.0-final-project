@@ -21,13 +21,17 @@ var SignUpContainer = React.createClass({
     var router = this.props.router;
 
     var file = this.state.fileModel;
-    file.set('name', this.state.avatar.name);
-    file.set('data', this.state.avatar);
 
-    file.save().done(function(){
-      user.set('userAvatar', file.get('url'));
-      user.signUp(router);
-    });
+    if(this.state.avatar){
+      file.set('name', this.state.avatar.name);
+      file.set('data', this.state.avatar);
+
+      file.save().done(function(){
+        user.set('userAvatar', file.get('url'));
+        user.signUp(router);
+      });
+    }
+
   },
   handleUserAvatar: function(image){
     this.setState({'avatar': image});

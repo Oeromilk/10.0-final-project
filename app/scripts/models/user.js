@@ -7,7 +7,8 @@ var User = Backbone.Model.extend({
     'username': '',
     'email': '',
     'password': '',
-    'userAvatar': ''
+    'userAvatar': '',
+    'numberOfCatches': 0
   },
   idAttribute: 'objectId',
   urlRoot: 'https://grabow.herokuapp.com/users',

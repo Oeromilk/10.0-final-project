@@ -57,8 +57,8 @@ var Article = React.createClass({
             <br />
             Click the button below to get started!
             <br />
-            <a href="#signup/" className="btn btn-primary">Take me to sign up</a> OR
-            <a href="#top-users/" className="btn btn-primary">See Top Users</a>
+            <a href="#signup/" className="btn btn-default">Take me to sign up</a> OR
+            <a href="#top-users/" className="btn btn-default">See Top Users</a>
           </div>
         </div>
       </div>
