@@ -5765,10 +5765,13 @@ button.close {
   box-sizing: border-box; }
 
 body {
-  padding-top: 60px; }
+  padding-top: 48px; }
 
 img {
   max-width: 100%; }
+
+.navbarStyle {
+  background-color: #2B3A42; }
 
 .user-nav-avatar {
   height: 24px;
@@ -5782,7 +5785,7 @@ p, span, a {
 
 .jumboHeight {
   color: #FF530D;
-  height: 800px;
+  height: 900px;
   background-image: url("https://static.pexels.com/photos/5869/buildings-books-architect-shelf.jpg");
   background-size: cover;
   position: relative; }
