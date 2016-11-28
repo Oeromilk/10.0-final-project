@@ -5770,9 +5770,17 @@ body {
 img {
   max-width: 100%; }
 
+.user-nav-avatar {
+  height: 24px;
+  width: 24px; }
+
 h1, h2, h3, h4, h5, h6, input {
   font-family: 'Catamaran', sans-serif; }
 
 p, span, a {
   font-family: 'Neuton', serif; }
+
+.hover-style {
+  border-bottom-style: 1px solid #FF530D; }
+
 /*# sourceMappingURL=app.css.map */
