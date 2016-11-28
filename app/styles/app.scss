@@ -28,11 +28,15 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 48px;
 }
 
 img {
   max-width: 100%;
+}
+
+.navbarStyle {
+  background-color: #2B3A42;
 }
 
 .user-nav-avatar {
@@ -51,7 +55,7 @@ p, span, a {
 //Landing Style
 .jumboHeight {
   color: #FF530D;
-  height: 800px;
+  height: 900px;
   background-image: url('https://static.pexels.com/photos/5869/buildings-books-architect-shelf.jpg');
   background-size: cover;
   position: relative;
@@ -64,6 +68,7 @@ p, span, a {
 }
 
 .articleContent {
+
   background-color: #BDD4DE;
   padding-bottom: 10px;
   margin-bottom: 10px;

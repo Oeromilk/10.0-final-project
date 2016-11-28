@@ -1,4 +1,7 @@
 var React = require('react');
+var $ = window.jQuery = require('jquery');
+
+require('bootstrap-sass');
 
 var FixedHeader = React.createClass({
   handleSignOut: function(e){
@@ -19,7 +22,7 @@ var FixedHeader = React.createClass({
 
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container-fluid">
+        <div className="container-fluid navbarStyle">
           <div className="navbar-header hover-style">
             <a className="navbar-brand" href="#">Shelf</a>
           </div>
