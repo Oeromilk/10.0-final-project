@@ -8,7 +8,18 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 //Google fonts
 @import url('https://fonts.googleapis.com/css?family=BioRhyme:300|Catamaran:500|Neuton:200');
 
+// @media (max-width: 768px){
+//   .nav{
+//     li {
+//       display: inline-block;
+//     }
+//   }
+// }
 
+// #2B3A42
+// #3F5765
+// #BDD4DE
+// #FF530D
 
 *,
 *::before,
@@ -35,6 +46,45 @@ h1, h2, h3, h4, h5, h6, input {
 
 p, span, a {
   font-family: 'Neuton', serif;
+}
+
+//Landing Style
+.jumboHeight {
+  color: #FF530D;
+  height: 800px;
+  background-image: url('https://static.pexels.com/photos/5869/buildings-books-architect-shelf.jpg');
+  background-size: cover;
+  position: relative;
+}
+
+.jumboHeight {
+  p {
+    font-size: 36px;
+  }
+}
+
+.articleContent {
+  background-color: #BDD4DE;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  .articleParagraphs {
+    font-size: 18px;
+  }
+}
+
+//User Listing Style
+.userStyleBackground {
+  background-color: #3F5765;
+}
+.userListingStyle{
+  background-color: #BDD4DE;
+  border: 1px solid #2B3A42;
+  border-radius: 5px;
+  margin: 5px;
+} h4 {
+  color: #FF530D;
+} p {
+  color: #fff;
 }
 
 .hover-style {

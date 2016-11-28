@@ -22,7 +22,6 @@ var SignUpContainer = React.createClass({
 
     var file = this.state.fileModel;
 
-    if(this.state.avatar){
       file.set('name', this.state.avatar.name);
       file.set('data', this.state.avatar);
 
@@ -30,7 +29,6 @@ var SignUpContainer = React.createClass({
         user.set('userAvatar', file.get('url'));
         user.signUp(router);
       });
-    }
 
   },
   handleUserAvatar: function(image){

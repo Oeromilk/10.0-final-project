@@ -17,6 +17,7 @@ var AppRouter = Backbone.Router.extend({
     'login/': 'login',
     'signup/': 'signup',
     'date-picker/': 'datePicker',
+    // 'date-picker/:id/': 'dateView',
     'date-picker/:id/': 'gameDayDetail',
     'claim-form/:id/': 'claimForm',
     'user-listing/': 'userListing',
@@ -40,9 +41,9 @@ var AppRouter = Backbone.Router.extend({
       document.getElementById('app')
     );
   },
-  datePicker: function(){
+  datePicker: function(dateId){
     ReactDom.render(
-      React.createElement(DatePickerContainer, {router: this}),
+      React.createElement(DatePickerContainer, {router: this, dateId: dateId}),
       document.getElementById('app')
     );
   },
@@ -60,7 +61,7 @@ var AppRouter = Backbone.Router.extend({
   },
   userListing: function(){
     ReactDom.render(
-      React.createElement(UserListingContainer),
+      React.createElement(UserListingContainer, {router: this}),
       document.getElementById('app')
     )
   },

@@ -69,6 +69,8 @@ var DatePickerInput = React.createClass({
     var splitDate = date.split('-');
 
     this.props.handleDateChange(splitDate);
+
+    // this.props.router.navigate('#dateView/' + date +'/');
   },
   render: function(){
     return (
@@ -133,7 +135,7 @@ var DatePickerContainer = React.createClass({
         <div className="row">
           <h1 className="col-md-8 col-md-offset-2 text-center">Select a date to see the home runs</h1>
         </div>
-        <DatePickerInput handleDateChange={this.handleDateChange} date={this.state.date} />
+        <DatePickerInput handleDateChange={this.handleDateChange} date={this.state.date} router={this.props.router}/>
         <GameListing collection={this.state.collection}/>
           <Modal
             isOpen={this.state.modalIsOpen}

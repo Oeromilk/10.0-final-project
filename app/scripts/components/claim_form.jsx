@@ -11,14 +11,17 @@ var User = require('../models/user.js').User;
 
 var ClaimForm = React.createClass({
   getInitialState: function(){
-    return this.props.model.toJSON()
+    return {
+      newHomerun: this.props.model.toJSON(),
+      buttonText: this.props.buttonText
+    }
   },
   handleInputChange: function(e){
     var target = e.target;
     var newHomerun = {};
     newHomerun[target.name] = target.value;
 
-    this.setState(newHomerun);
+    this.setState({newHomerun: newHomerun});
   },
   handleForm: function(e){
     e.preventDefault();
@@ -29,10 +32,12 @@ var ClaimForm = React.createClass({
     var self = this;
     var image = e.target.files[0];
     var file = this.props.fileModel;
+    this.setState({buttonText: 'Loading..'});
     file.set('name', image.name);
     file.set('data', image);
     file.save().done(function(){
       console.log(file);
+      self.setState({buttonText: 'Claim HomeRun!'});
       self.setState({'ticketStub': file.get('url')})
     });
   },
@@ -40,10 +45,12 @@ var ClaimForm = React.createClass({
     var self = this;
     var image = e.target.files[0];
     var file = this.props.fileModel;
+    this.setState({buttonText: 'Loading..'});
     file.set('name', image.name);
     file.set('data', image);
     file.save().done(function(){
       console.log(file);
+      self.setState({buttonText: 'Claim HomeRun!'});
       self.setState({'baseBallImage': file.get('url')})
     });
   },
@@ -114,7 +121,7 @@ var ClaimForm = React.createClass({
             <input onChange={this.handleBaseballImage} type="file" id="baseBallImage" />
             <p className="help-block">Upload an image of your baseball you caught.</p>
           </div>
-          <button className="btn btn-primary" type="submit">Claim HomeRun!</button>
+          <button className="btn btn-primary" type="submit">{this.state.buttonText}</button>
       </form>
     )
   }
@@ -125,7 +132,8 @@ var ClaimFormContainer = React.createClass({
     return {
       model: new ClaimedHomerun(),
       collection: new ClaimedHomerunCollection(),
-      fileModel: new FileModel()
+      fileModel: new FileModel(),
+      buttonText: 'Claim HomeRun!'
     }
   },
   handleForm: function(formData){
@@ -153,7 +161,7 @@ var ClaimFormContainer = React.createClass({
   render: function(){
     return (
       <Template>
-        <ClaimForm fileModel={this.state.fileModel} model={this.state.model} handleForm={this.handleForm}/>
+        <ClaimForm buttonText={this.state.buttonText} fileModel={this.state.fileModel} model={this.state.model} handleForm={this.handleForm}/>
       </Template>
     )
   }
