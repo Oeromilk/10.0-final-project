@@ -33,7 +33,7 @@ var FixedHeader = React.createClass({
           </ul>
           <ul className="nav navbar-nav navbar-right">
             <li><p className="navbar-text">Signed in as: {username}</p></li>
-            <li><div className="navbar-brand"><img className="user-nav-avatar" src={userAvatar} /></div></li>
+            <li><div className="navbar-brand"><img className="user-nav-avatar img-rounded" src={userAvatar} /></div></li>
             <li><a href="#login/" role="button">Sign In <i className="fa fa-sign-in" aria-hidden="true"></i></a></li>
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i className="fa fa-bars" aria-hidden="true"></i></a>

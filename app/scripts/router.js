@@ -9,6 +9,7 @@ var DatePickerContainer = require('./components/date_picker.jsx').DatePickerCont
 var GameDayDetailContainer = require('./components/game_day_detail.jsx').GameDayDetailContainer;
 var ClaimFormContainer = require('./components/claim_form.jsx').ClaimFormContainer;
 var UserListingContainer = require('./components/user_listing.jsx').UserListingContainer;
+var UserListingEditContainter = require('./components/user_listing_edit.jsx').UserListingEditContainter;
 var TopUsersContainer = require('./components/top_users.jsx').TopUsersContainer;
 
 var AppRouter = Backbone.Router.extend({
@@ -21,6 +22,7 @@ var AppRouter = Backbone.Router.extend({
     'date-picker/:id/': 'gameDayDetail',
     'claim-form/:id/': 'claimForm',
     'user-listing/': 'userListing',
+    'user-listing/:model/': 'userListingEdit',
     'top-users/': 'topUsers'
   },
   index: function(){
@@ -62,6 +64,12 @@ var AppRouter = Backbone.Router.extend({
   userListing: function(){
     ReactDom.render(
       React.createElement(UserListingContainer, {router: this}),
+      document.getElementById('app')
+    )
+  },
+  userListingEdit: function(model){
+    ReactDom.render(
+      React.createElement(UserListingEditContainter, {router: this, model: model}),
       document.getElementById('app')
     )
   },

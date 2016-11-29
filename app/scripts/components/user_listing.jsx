@@ -7,9 +7,9 @@ var setupHeaders = require('../parse_utility.js').setupHeaders;
 var User = require('../models/user.js').User;
 
 var UserHomeRunList = React.createClass({
-  handleEdit: function(e){
-    e.preventDefault();
-    console.log('clicked');
+  open: function(homerun) {
+    this.props.router.navigate('user-listing/' + homerun.objectId + '/', {trigger: true});
+    localStorage.setItem('homeRunModel', JSON.stringify(homerun));
   },
   handleDelete: function(e){
     e.preventDefault();
@@ -30,7 +30,6 @@ var UserHomeRunList = React.createClass({
     $.ajax(options).success(function(){
       router.navigate('user-listing/', {trigger: true});
     });
-
   },
   render: function(){
     var self = this;
@@ -54,7 +53,7 @@ var UserHomeRunList = React.createClass({
             <img src={homerun.baseBallImage} alt="Image of baseball" />
             <img src={homerun.ticketStub} alt="Image of tickestub" />
           </div>
-          <button onClick={self.handleEdit} className="btn btn-default">Edit</button>
+          <button onClick={function(){self.open(homerun)}} className="btn btn-default">Edit</button>
           <button onClick={self.handleDelete} className="btn btn-default" value={homerun.objectId}>Delete</button>
         </div>
       )

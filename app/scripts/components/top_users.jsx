@@ -11,10 +11,7 @@ var TopUserListing = React.createClass({
     var homeRunList = this.props.listingView;
     var sortedUsers = _.sortBy(homeRunList, 'numberOfCatches');
     var topHomeRunView = sortedUsers.reverse().map(function(user){
-      for(var i = 0; i === 0; i++){
-        i + 1;
-      }
-      return <li className="list-group-item text-center topUserFont" key={user.objectId}>{i}{user.firstName} {user.lastName} {user.numberOfCatches}</li>
+      return <li className="list-group-item text-center topUserFont" key={user.objectId}>{user.firstName} {user.lastName} {user.numberOfCatches}</li>
     })
     return (
       <ul className="list-group col-md-6 col-md-offset-3 topUserOpacity">

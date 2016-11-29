@@ -1,31 +1,31 @@
 var React = require('react');
+var $ = require('jquery');
 
-//React Components
 var Template = require('./templates/template.jsx').Template;
-//Backbone Models and Utility
 var ClaimedHomerun = require('../models/claimed_homerun.js').ClaimedHomerun;
-var ClaimedHomerunCollection = require('../models/claimed_homerun.js').ClaimedHomerunCollection;
-var setupHeaders = require('../parse_utility.js').setupHeaders;
 var FileModel = require('../models/file_upload.js').File;
-var User = require('../models/user.js').User;
 
 var ClaimForm = React.createClass({
   getInitialState: function(){
     return {
-      newHomerun: this.props.model,
+      homerun: this.props.homerun,
       buttonText: this.props.buttonText
     }
   },
   handleInputChange: function(e){
     var target = e.target;
-    var newHomerun = this.state.newHomerun;
+    var newHomerun = this.state.homerun;
 
-    newHomerun.set(target.name, target.value);
+    newHomerun[target.name] = target.value;
+
+    this.setState(newHomerun);
+
+    this.props.model.set(newHomerun);
   },
   handleForm: function(e){
     e.preventDefault();
 
-    this.props.handleForm(this.state.newHomerun);
+    this.props.handleForm(this.props.model);
   },
   handleTicketStub: function(e){
     var self = this;
@@ -37,14 +37,9 @@ var ClaimForm = React.createClass({
     file.set('data', image);
     file.save().done(function(){
       console.log(file);
-      self.setState({buttonText: 'Claim HomeRun!'});
+      self.setState({buttonText: 'Update Homerun!'});
 
       newHomerun.set('ticketStub', file.get('url'));
-      // var newHomerun = self.state.newHomerun;
-      // newHomerun = {
-      //   'ticketStub': file.get('url')
-      // }
-      // self.setState({newHomerun: newHomerun})
     });
   },
   handleBaseballImage: function(e){
@@ -57,32 +52,26 @@ var ClaimForm = React.createClass({
     file.set('data', image);
     file.save().done(function(){
       console.log(file);
-      self.setState({buttonText: 'Claim HomeRun!'});
+      self.setState({buttonText: 'Update HomeRun!'});
 
       newHomerun.set('baseBallImage', file.get('url'));
-      // var newHomerun = self.state.newHomerun;
-      // newHomerun = {
-      //   'baseballImage': file.get('url')
-      // }
-      // self.setState({newHomerun: newHomerun})
     });
   },
   render: function(){
-    console.log(this.state.newHomerun);
     return (
       <form onSubmit={this.handleForm} className="col-md-6 col-md-offset-3">
         <h2>Seat Information</h2>
         <div className="form-inline well">
           <label htmlFor="seatSection">Section </label>
-          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatSection" id="seatSection" placeholder="Seat Section" value={this.state.seatSection} />
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatSection" id="seatSection" placeholder="Seat Section" value={this.state.homerun.seatSection} />
           <label htmlFor="seatRow">Row </label>
-          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatRow" id="seatRow" placeholder="Seat Row" value={this.state.seatRow} />
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatRow" id="seatRow" placeholder="Seat Row" value={this.state.homerun.seatRow} />
           <label htmlFor="seatNumber">Number </label>
-          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatNumber" id="seatNumber" placeholder="Seat Number" value={this.state.seatNumber} />
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="seatNumber" id="seatNumber" placeholder="Seat Number" value={this.state.homerun.seatNumber} />
         </div>
         <div className="form-inline well">
           <label htmlFor="parkSelector">Select Your Park </label>
-          <select onChange={this.handleInputChange} id="parkSelector" name="parkName" value={this.state.parkName}>
+          <select onChange={this.handleInputChange} id="parkSelector" name="parkName" value={this.state.homerun.parkName}>
             <option>Angel Stadium of Anaheim</option>
             <option>AT&T Park</option>
             <option>Busch Stadium</option>
@@ -115,75 +104,83 @@ var ClaimForm = React.createClass({
             <option>Yanke Stadium</option>
           </select>
           <label htmlFor="dateSelector">Select Date </label>
-          <input onChange={this.handleInputChange} type="date" name="date" className="form-control" value={this.state.date} />
+          <input onChange={this.handleInputChange} type="date" name="date" className="form-control" value={this.state.homerun.date} />
         </div>
         <h2>Batter Information</h2>
         <div className="form-inline well">
           <label htmlFor="firstName">First Name </label>
-          <input onChange={this.handleInputChange} type="text" className="form-control" name="batterFirstName" id="firstName" placeholder="First Name" value={this.state.batterFirstName} />
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="batterFirstName" id="firstName" placeholder="First Name" value={this.state.homerun.batterFirstName} />
           <label htmlFor="lastName">Last Name </label>
-          <input onChange={this.handleInputChange} type="text" className="form-control" name="batterLastName" id="lastName" placeholder="Last Name" value={this.state.batterLastname} />
+          <input onChange={this.handleInputChange} type="text" className="form-control" name="batterLastName" id="lastName" placeholder="Last Name" value={this.state.homerun.batterLastName} />
         </div>
         <h2>Image Upload</h2>
           <div className="form-group well">
             <label htmlFor="ticketStub">Ticket Stub Image</label>
             <input onChange={this.handleTicketStub} type="file" id="ticketStub" />
             <p className="help-block">Upload an image of your ticket stub to verify your seat.</p>
+            <img src={this.state.homerun.ticketStub} />
           </div>
           <div className="form-group well">
             <label htmlFor="baseBallImage">BaseBall Image (optional)</label>
             <input onChange={this.handleBaseballImage} type="file" id="baseBallImage" />
             <p className="help-block">Upload an image of your baseball you caught.</p>
+            <img src={this.state.homerun.baseBallImage} />
           </div>
-          <button className="btn btn-primary" type="submit">{this.state.buttonText}</button>
+          <button onClick={this.handleForm} className="btn btn-primary" type="submit">{this.state.buttonText}</button>
       </form>
     )
   }
 });
 
-var ClaimFormContainer = React.createClass({
+var UserListingEditContainter = React.createClass({
   getInitialState: function(){
     return {
+      buttonText: 'Update Homerun',
+      homerun: JSON.parse(localStorage.getItem('homeRunModel')),
       model: new ClaimedHomerun(),
-      collection: new ClaimedHomerunCollection(),
-      fileModel: new FileModel(),
-      buttonText: 'Claim HomeRun!'
+      fileModel: new FileModel()
     }
   },
-  handleForm: function(newHomerun){
-    var collection = this.state.collection;
+  handleForm: function(updatedModel){
+    var objectId = this.state.homerun.objectId;
+    var token = JSON.parse(localStorage.getItem('shelfSession'));
+    var options = {};
     var router = this.props.router;
-    var sessionToken = JSON.parse(localStorage.getItem('shelfSession'));
-    var sessionId = JSON.parse(localStorage.getItem('shelfObjectId'));
-    setupHeaders(sessionToken)
-    console.log(sessionId);
-    var formData = newHomerun.toJSON();
-    //newHomerun.set('claimedBy', {"__type": "Pointer", "className": "_User", "objectId": sessionId});
-    formData.claimedBy = {"__type": "Pointer", "className": "_User", "objectId": sessionId};
 
-    var user = new User(JSON.parse(localStorage.getItem('userInfo')));
-    user.unset('createdAt');
-    user.unset('updatedAt');
-    user.unset('sessionToken');
-    user.unset('ACL');
+    updatedModel.unset('buttonText');
+    updatedModel.unset('claimedBy');
+    updatedModel.unset('createdAt');
+    updatedModel.unset('updatedAt');
+    updatedModel.unset('newHomerun');
 
-    collection.create(formData);
-    user.set("numberOfCatches", {"__op":"Increment","amount":1});
-    user.save().then(function(){
-      router.navigate('user-listing/', {trigger: true});
-    });
+    options.url = "https://grabow.herokuapp.com/classes/ClaimedHomerun/" + objectId + "/";
+    options.data = updatedModel.toJSON();
+
+    options.method = "PUT";
+    options.data['objectId'] = objectId;
+
+    options.headers = {
+    "Content-Type": "application/x-www-form-urlencoded",
+    "X-Parse-Application-Id": "dalaran",
+    "X-Parse-REST-API-Key": "stormwind",
+    "X-Parse-Session-Token": token
+    }
+
+    $.ajax(options).then(function(response) {
+     console.log('response', response);
+     router.navigate('#user-listing/', {trigger: true});
+    })
 
   },
   render: function(){
     return (
       <Template>
-        <ClaimForm buttonText={this.state.buttonText} fileModel={this.state.fileModel} model={this.state.model} handleForm={this.handleForm}/>
+        <ClaimForm fileModel={this.state.file} model={this.state.model} homerun={this.state.homerun} buttonText={this.state.buttonText} handleForm={this.handleForm}/>
       </Template>
     )
   }
 });
 
 module.exports = {
-  ClaimFormContainer: ClaimFormContainer,
-  ClaimForm: ClaimForm
-};
+  UserListingEditContainter: UserListingEditContainter
+}

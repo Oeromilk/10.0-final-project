@@ -76,7 +76,7 @@ var Article = React.createClass({
             </div>
           </div>
           <div className="row">
-            <iframe className="col-md-offset-3" width="520" height="315" src="https://www.youtube.com/embed/RohR1Sjj4l8" frameBorder="0" allowFullScreen></iframe>
+            <iframe className="col-sm-offset-3" width="520" height="315" src="https://www.youtube.com/embed/RohR1Sjj4l8" frameBorder="0" allowFullScreen></iframe>
           </div>
         </div>
       </div>
