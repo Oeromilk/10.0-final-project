@@ -58,7 +58,6 @@ var Article = React.createClass({
           </div>
           <div className="row">
             <div className="col-md-6 col-md-offset-3 text-center articleParagraphs">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/RohR1Sjj4l8" frameBorder="0" allowFullScreen></iframe>
               Are you ready to add homeruns to your shelf? Follow the button below to
               create an account and then sign in so you can start tracking your
               caught homeruns.
@@ -73,7 +72,11 @@ var Article = React.createClass({
               <br />
               <a href="#signup/" className="btn btn-default">Take me to sign up</a> OR
               <a href="#top-users/" className="btn btn-default">See Top Users</a>
+
             </div>
+          </div>
+          <div className="row">
+            <iframe className="col-md-offset-3" width="520" height="315" src="https://www.youtube.com/embed/RohR1Sjj4l8" frameBorder="0" allowFullScreen></iframe>
           </div>
         </div>
       </div>

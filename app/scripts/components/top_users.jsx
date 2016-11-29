@@ -14,10 +14,10 @@ var TopUserListing = React.createClass({
       for(var i = 0; i === 0; i++){
         i + 1;
       }
-      return <li className="list-group-item text-center" key={user.objectId}>{i}{user.firstName} {user.lastName} {user.numberOfCatches}</li>
+      return <li className="list-group-item text-center topUserFont" key={user.objectId}>{i}{user.firstName} {user.lastName} {user.numberOfCatches}</li>
     })
     return (
-      <ul className="list-group col-md-6 col-md-offset-3">
+      <ul className="list-group col-md-6 col-md-offset-3 topUserOpacity">
         {topHomeRunView}
       </ul>
     )
@@ -47,8 +47,10 @@ var TopUsersContainer = React.createClass({
     console.log(this.state.listingView);
     return (
       <Template>
-        <h1 className="col-md-6 col-md-offset-3 text-center">List of Top Users</h1>
-        <TopUserListing listingView={this.state.listingView} />
+        <div className="topUserBackground">
+          <h1 className="col-md-6 col-md-offset-3 text-center topUserHeading">List of Top Users</h1>
+          <TopUserListing listingView={this.state.listingView} />
+        </div>
       </Template>
     )
   }

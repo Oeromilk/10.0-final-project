@@ -133,7 +133,7 @@ var DatePickerContainer = React.createClass({
     return (
       <Template>
         <div className="row">
-          <h1 className="col-md-8 col-md-offset-2 text-center">Select a date to see the home runs</h1>
+          <h1 className="col-md-8 col-md-offset-2 text-center topUserHeading">Select a date to see the home runs</h1>
         </div>
         <DatePickerInput handleDateChange={this.handleDateChange} date={this.state.date} router={this.props.router}/>
         <GameListing collection={this.state.collection}/>

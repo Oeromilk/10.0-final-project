@@ -52,6 +52,11 @@ p, span, a {
   font-family: 'Neuton', serif;
 }
 
+//Nav Style
+.colorTest {
+  color: #FF530D;
+}
+
 //Landing Style
 .jumboHeight {
   color: #FF530D;
@@ -64,6 +69,7 @@ p, span, a {
 .jumboHeight {
   p {
     font-size: 36px;
+    font-weight: 200;
   }
 }
 
@@ -92,6 +98,25 @@ p, span, a {
   color: #fff;
 }
 
-.hover-style {
-  border-bottom-style: 1px solid #FF530D;
+//Top User Style
+.topUserHeading {
+  color: #FF530D;
 }
+
+.topUserFont {
+  font-size: 24px;
+}
+
+.topUserOpacity {
+  background-color: transparent;
+}
+
+.topUserBackground {
+  height: 950px;
+  background-image: url('http://grabow.herokuapp.com/files/dalaran/3383df1c417a64f960783b503e25205d_BASEBALL%20PHOTO.jpg');
+  background-size: cover;
+  position: relative;
+}
+// .hover-style {
+//   border-bottom-style: 1px solid #FF530D;
+// }
