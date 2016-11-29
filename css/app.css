@@ -5783,6 +5783,9 @@ h1, h2, h3, h4, h5, h6, input {
 p, span, a {
   font-family: 'Neuton', serif; }
 
+.colorTest {
+  color: #FF530D; }
+
 .jumboHeight {
   color: #FF530D;
   height: 900px;
@@ -5791,7 +5794,8 @@ p, span, a {
   position: relative; }
 
 .jumboHeight p {
-  font-size: 36px; }
+  font-size: 36px;
+  font-weight: 200; }
 
 .articleContent {
   background-color: #BDD4DE;
@@ -5815,7 +5819,19 @@ h4 {
 p {
   color: #fff; }
 
-.hover-style {
-  border-bottom-style: 1px solid #FF530D; }
+.topUserHeading {
+  color: #FF530D; }
+
+.topUserFont {
+  font-size: 24px; }
+
+.topUserOpacity {
+  background-color: transparent; }
+
+.topUserBackground {
+  height: 950px;
+  background-image: url("http://grabow.herokuapp.com/files/dalaran/3383df1c417a64f960783b503e25205d_BASEBALL%20PHOTO.jpg");
+  background-size: cover;
+  position: relative; }
 
 /*# sourceMappingURL=app.css.map */
