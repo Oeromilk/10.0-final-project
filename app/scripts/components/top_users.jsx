@@ -10,7 +10,8 @@ var TopUserListing = React.createClass({
   render: function(){
     var homeRunList = this.props.listingView;
     var sortedUsers = _.sortBy(homeRunList, 'numberOfCatches');
-    var topHomeRunView = sortedUsers.reverse().map(function(user){
+    var topTenUsers = _.first(sortedUsers, 10);
+    var topHomeRunView = topTenUsers.reverse().map(function(user){
       return <li className="list-group-item text-center topUserFont" key={user.objectId}>{user.firstName} {user.lastName} {user.numberOfCatches}</li>
     })
     return (
@@ -45,7 +46,7 @@ var TopUsersContainer = React.createClass({
     return (
       <Template>
         <div className="topUserBackground">
-          <h1 className="col-md-6 col-md-offset-3 text-center topUserHeading">List of Top Users</h1>
+          <h1 className="col-md-6 col-md-offset-3 text-center topUserHeading">Top 10 Users</h1>
           <TopUserListing listingView={this.state.listingView} />
         </div>
       </Template>

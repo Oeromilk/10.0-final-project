@@ -23,7 +23,7 @@ var FixedHeader = React.createClass({
     return (
       <nav className="navbar navbar-default navbar-fixed-top">
         <div className="container-fluid navbarStyle">
-          <div className="navbar-header hover-style">
+          <div className="navbar-header hover-style navBarDropDown">
             <a className="navbar-brand" href="#">Shelf</a>
           </div>
           <ul className="nav navbar-nav visible-sm visible-md visible-lg">
@@ -59,7 +59,7 @@ var FixedHeader = React.createClass({
 var Template = React.createClass({
   render: function(){
     return (
-      <div>
+      <div id="dateStyle">
         <FixedHeader />
           {this.props.children}
       </div>

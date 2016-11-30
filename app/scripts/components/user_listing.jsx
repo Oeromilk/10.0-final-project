@@ -8,8 +8,8 @@ var User = require('../models/user.js').User;
 
 var UserHomeRunList = React.createClass({
   open: function(homerun) {
-    this.props.router.navigate('user-listing/' + homerun.objectId + '/', {trigger: true});
     localStorage.setItem('homeRunModel', JSON.stringify(homerun));
+    this.props.router.navigate('user-listing/' + homerun.objectId + '/', {trigger: true});
   },
   handleDelete: function(e){
     e.preventDefault();
@@ -32,6 +32,7 @@ var UserHomeRunList = React.createClass({
     });
   },
   render: function(){
+    var userName = JSON.parse(localStorage.getItem('shelfUsername'));
     var self = this;
     var userList = this.props.userListing.map(function(homerun){
       console.log(homerun);
@@ -50,8 +51,8 @@ var UserHomeRunList = React.createClass({
             <p>{homerun.parkName} On: {homerun.date}</p>
           </div>
           <div>
-            <img src={homerun.baseBallImage} alt="Image of baseball" />
-            <img src={homerun.ticketStub} alt="Image of tickestub" />
+            <img className="img-thumbnail" src={homerun.baseBallImage} alt="Image of baseball" />
+            <img className="img-thumbnail" src={homerun.ticketStub} alt="Image of tickestub" />
           </div>
           <button onClick={function(){self.open(homerun)}} className="btn btn-default">Edit</button>
           <button onClick={self.handleDelete} className="btn btn-default" value={homerun.objectId}>Delete</button>
@@ -61,6 +62,7 @@ var UserHomeRunList = React.createClass({
     return (
       <div className="row">
         <div className="col-md-12 userStyleBackground">
+          <h1 id="userListHeading" className="text-center">{userName} Shelf</h1>
           {userList}
         </div>
       </div>

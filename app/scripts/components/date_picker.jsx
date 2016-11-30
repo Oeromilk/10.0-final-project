@@ -29,13 +29,16 @@ var GameListing = React.createClass({
 
     var gameDayListing = gameDayModels.map(function(gameDay){
       return (
-        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('home_team_city') + '/'} className="list-group-item hover-style" >
-          <h4>
-            {gameDay.get('home_team_city')} {gameDay.get('home_team_name')}
-            vs
-            {gameDay.get('away_team_city')} {gameDay.get('away_team_name')}
-          </h4>
-          <h3 className="text-center">{gameDay.get('venue')}</h3>
+        <a key={gameDay.cid} href={'#date-picker/' + gameDay.get('home_team_city') + '/'} className="list-group-item" >
+          <div className="test">
+          </div>
+            <table className="table text-center">
+                <td><h4>{gameDay.get('home_team_city')} {gameDay.get('home_team_name')}</h4></td>
+                  <td><h4>vs</h4></td>
+                <td><h4>{gameDay.get('away_team_city')} {gameDay.get('away_team_name')}</h4></td>
+            </table>
+            <h3 className="text-center">{gameDay.get('venue')}</h3>
+
         </a>
       )
     });
@@ -124,31 +127,28 @@ var DatePickerContainer = React.createClass({
       self.setState({collection: collection});
     });
   },
-  componentWillMount: function(){
-    var req = new XMLHttpRequest();
-    req.open('GET', true);
-    req.setRequestHeader("Authorization", "");
-  },
   render: function(){
     return (
       <Template>
-        <div className="row">
-          <h1 className="col-md-8 col-md-offset-2 text-center topUserHeading">Select a date to see the home runs</h1>
-        </div>
-        <DatePickerInput handleDateChange={this.handleDateChange} date={this.state.date} router={this.props.router}/>
-        <GameListing collection={this.state.collection}/>
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="No Games For That Date"
-          >
+        <div id="dateStyle">
+          <div className="row">
+            <h1 className="col-md-8 col-md-offset-2 text-center topUserHeading">Select a date to see the home runs</h1>
+          </div>
+          <DatePickerInput handleDateChange={this.handleDateChange} date={this.state.date} router={this.props.router}/>
+          <GameListing collection={this.state.collection}/>
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              style={customStyles}
+              contentLabel="No Games For That Date"
+            >
 
-            <h2 ref="subtitle">Oops!</h2>
-            <div ref="description">No there are no games on record for that date.<br/>Select another date.</div>
-            <button className="btn btn-default" onClick={this.closeModal}>close</button>
-          </Modal>
+              <h2 ref="subtitle">Oops!</h2>
+              <div ref="description">No there are no games on record for that date.<br/>Select another date.</div>
+              <button className="btn btn-default" onClick={this.closeModal}>close</button>
+            </Modal>
+          </div>
       </Template>
     )
   }

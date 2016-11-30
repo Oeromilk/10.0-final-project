@@ -34,7 +34,6 @@ var HomeRunListing = React.createClass({
 
     return (
       <div>
-        <h1 className="col-md-6 col-md-offset-3 text-center">Home Runs by Batter</h1>
         <div className="list-group col-md-6 col-md-offset-3">
           {homeRuns.length > 0 ? homeRunView :  <h3 className="text-center">No Home Runs for this game</h3>}
         </div>
@@ -62,6 +61,7 @@ var GameDayDetailContainer = React.createClass({
   render: function(){
     return (
       <Template>
+        <h1 id="labelStyle" className="col-md-6 col-md-offset-3 text-center batterPadding">Home Runs by Batter</h1>
         <HomeRunListing collection={this.state.collection} gameId={this.props.gameId}/>
       </Template>
     )

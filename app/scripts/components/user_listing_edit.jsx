@@ -31,7 +31,7 @@ var ClaimForm = React.createClass({
     var self = this;
     var image = e.target.files[0];
     var file = this.props.fileModel;
-    var newHomerun = this.state.newHomerun;
+    var newHomerun = this.props.model;
     this.setState({buttonText: 'Loading..'});
     file.set('name', image.name);
     file.set('data', image);
@@ -46,7 +46,7 @@ var ClaimForm = React.createClass({
     var self = this;
     var image = e.target.files[0];
     var file = this.props.fileModel;
-    var newHomerun = this.state.newHomerun;
+    var newHomerun = this.props.model;
     this.setState({buttonText: 'Loading..'});
     file.set('name', image.name);
     file.set('data', image);
@@ -126,7 +126,7 @@ var ClaimForm = React.createClass({
             <p className="help-block">Upload an image of your baseball you caught.</p>
             <img src={this.state.homerun.baseBallImage} />
           </div>
-          <button onClick={this.handleForm} className="btn btn-primary" type="submit">{this.state.buttonText}</button>
+          <button onClick={this.handleForm} className="btn btn-default" type="submit">{this.state.buttonText}</button>
       </form>
     )
   }
@@ -175,7 +175,7 @@ var UserListingEditContainter = React.createClass({
   render: function(){
     return (
       <Template>
-        <ClaimForm fileModel={this.state.file} model={this.state.model} homerun={this.state.homerun} buttonText={this.state.buttonText} handleForm={this.handleForm}/>
+        <ClaimForm fileModel={this.state.fileModel} model={this.state.model} homerun={this.state.homerun} buttonText={this.state.buttonText} handleForm={this.handleForm}/>
       </Template>
     )
   }

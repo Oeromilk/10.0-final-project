@@ -71,8 +71,8 @@ var ClaimForm = React.createClass({
     console.log(this.state.newHomerun);
     return (
       <form onSubmit={this.handleForm} className="col-md-6 col-md-offset-3">
-        <h2>Seat Information</h2>
-        <div className="form-inline well">
+        <h2 id="labelStyle">Seat Information</h2>
+        <div className="form-inline claimFormStyle">
           <label htmlFor="seatSection">Section </label>
           <input onChange={this.handleInputChange} type="text" className="form-control" name="seatSection" id="seatSection" placeholder="Seat Section" value={this.state.seatSection} />
           <label htmlFor="seatRow">Row </label>
@@ -80,7 +80,7 @@ var ClaimForm = React.createClass({
           <label htmlFor="seatNumber">Number </label>
           <input onChange={this.handleInputChange} type="text" className="form-control" name="seatNumber" id="seatNumber" placeholder="Seat Number" value={this.state.seatNumber} />
         </div>
-        <div className="form-inline well">
+        <div className="form-inline claimFormStyle">
           <label htmlFor="parkSelector">Select Your Park </label>
           <select onChange={this.handleInputChange} id="parkSelector" name="parkName" value={this.state.parkName}>
             <option>Angel Stadium of Anaheim</option>
@@ -117,25 +117,25 @@ var ClaimForm = React.createClass({
           <label htmlFor="dateSelector">Select Date </label>
           <input onChange={this.handleInputChange} type="date" name="date" className="form-control" value={this.state.date} />
         </div>
-        <h2>Batter Information</h2>
-        <div className="form-inline well">
+        <h2 id="labelStyle">Batter Information</h2>
+        <div className="form-inline claimFormStyle">
           <label htmlFor="firstName">First Name </label>
           <input onChange={this.handleInputChange} type="text" className="form-control" name="batterFirstName" id="firstName" placeholder="First Name" value={this.state.batterFirstName} />
           <label htmlFor="lastName">Last Name </label>
           <input onChange={this.handleInputChange} type="text" className="form-control" name="batterLastName" id="lastName" placeholder="Last Name" value={this.state.batterLastname} />
         </div>
-        <h2>Image Upload</h2>
-          <div className="form-group well">
+        <h2 id="labelStyle">Image Upload</h2>
+          <div className="form-group claimFormStyle">
             <label htmlFor="ticketStub">Ticket Stub Image</label>
             <input onChange={this.handleTicketStub} type="file" id="ticketStub" />
-            <p className="help-block">Upload an image of your ticket stub to verify your seat.</p>
+            <p className="help-block claimFormHelper">Upload an image of your ticket stub to verify your seat.</p>
           </div>
-          <div className="form-group well">
+          <div className="form-group claimFormStyle">
             <label htmlFor="baseBallImage">BaseBall Image (optional)</label>
             <input onChange={this.handleBaseballImage} type="file" id="baseBallImage" />
-            <p className="help-block">Upload an image of your baseball you caught.</p>
+            <p className="help-block claimFormHelper">Upload an image of your baseball you caught.</p>
           </div>
-          <button className="btn btn-primary" type="submit">{this.state.buttonText}</button>
+          <button className="btn btn-default" type="submit">{this.state.buttonText}</button>
       </form>
     )
   }

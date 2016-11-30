@@ -18,7 +18,6 @@ var AppRouter = Backbone.Router.extend({
     'login/': 'login',
     'signup/': 'signup',
     'date-picker/': 'datePicker',
-    // 'date-picker/:id/': 'dateView',
     'date-picker/:id/': 'gameDayDetail',
     'claim-form/:id/': 'claimForm',
     'user-listing/': 'userListing',
