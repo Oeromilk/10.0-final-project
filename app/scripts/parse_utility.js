@@ -28,10 +28,10 @@ function logIn(loginInfo, router){
     });
 }
 
-var mlbUrl = 'http://gd2.mlb.com/components/game/mlb/';
+var mlbUrl = 'https://shelf-mlb-proxy.herokuapp.com/mlb';
 
 function setUrl(year, month, day){
-  var dateUrl = mlbUrl + 'year_' + year + '/month_' + month + '/day_' + day + '/master_scoreboard.json';
+  var dateUrl = mlbUrl + '?year=' + year + '&month=' + month + '&day=' + day;
 
   return dateUrl;
 }

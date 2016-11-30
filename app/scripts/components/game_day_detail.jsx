@@ -52,7 +52,7 @@ var GameDayDetailContainer = React.createClass({
     var self = this;
     var collection = this.state.collection;
     var dateUrl = JSON.parse(localStorage.getItem('dateUrl'));
-    $.get(dateUrl).then(function(response){
+    $.getJSON(dateUrl).then(function(response){
       //console.log(response);
       var data = response.data.games.game;
       self.setState({collection: collection.add(data)});

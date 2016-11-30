@@ -118,7 +118,8 @@ var DatePickerContainer = React.createClass({
     var dateUrl = setUrl(splitDate[0], splitDate[1], splitDate[2]);
     localStorage.setItem('dateUrl', JSON.stringify(dateUrl));
 
-    $.get(dateUrl).then(function(response){
+    $.getJSON(dateUrl).then(function(response){
+      console.log(response);
       if(!response.data.games.game){
         self.openModal();
       };
