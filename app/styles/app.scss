@@ -8,13 +8,13 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 //Google fonts
 @import url('https://fonts.googleapis.com/css?family=BioRhyme:300|Catamaran:500|Neuton:200');
 
-// @media (max-width: 768px){
-//   .nav{
-//     li {
-//       display: inline-block;
-//     }
-//   }
-// }
+@media (max-width: 768px){
+  #navBarDropDown {
+    display: inline-block;
+  }      
+}
+
+//Color Scheme
 
 // #2B3A42
 // #3F5765
