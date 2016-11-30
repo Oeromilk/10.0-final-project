@@ -5759,9 +5759,23 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+html, body {
+  height: 100%; }
+
 @media (max-width: 768px) {
   #navBarDropDown {
     display: inline-block; } }
+.btn-default:hover {
+  color: #fff !important;
+  background-color: #FF530D !important; }
+
+.list-group-item {
+  background-color: white !important; }
+
+.list-group-item:hover {
+  color: #fff !important;
+  background-color: #FF530D !important; }
+
 *,
 *::before,
 *::after {
@@ -5786,13 +5800,47 @@ h1, h2, h3, h4, h5, h6, input {
 p, span, a {
   font-family: 'Neuton', serif; }
 
+#dateStyle {
+  min-height: 950px;
+  background-color: #3F5765; }
+
+#signUpBackground {
+  height: 950px;
+  background-image: url("https://static.pexels.com/photos/139762/pexels-photo-139762.jpeg");
+  background-size: cover;
+  position: relative; }
+
+.signUpBanner {
+  margin-top: 200px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding-top: 10px; }
+
+#labelStyle {
+  color: #FF530D; }
+
+#signUpSide {
+  color: #FF530D; }
+
+#signInBackground {
+  height: 950px;
+  background-image: url("https://static.pexels.com/photos/106218/pexels-photo-106218.jpeg");
+  background-size: cover;
+  position: relative; }
+
+.signInBanner {
+  margin-top: 200px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding-top: 10px; }
+
 .colorTest {
   color: #FF530D; }
 
 .jumboHeight {
   color: #FF530D;
   height: 900px;
-  background-image: url("https://static.pexels.com/photos/5869/buildings-books-architect-shelf.jpg");
+  background-image: url("http://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2014/3/10/2/hgtv-18-sh14-kids-bedroom_h.jpg.rend.hgtvcom.1280.960.jpeg");
   background-size: cover;
   position: relative; }
 
@@ -5808,9 +5856,15 @@ p, span, a {
     font-size: 18px; }
 
 .userStyleBackground {
-  background-color: #3F5765; }
+  background-color: #3F5765;
+  padding-bottom: 50px; }
+
+#userListHeading {
+  color: #FF530D;
+  font-size: 48px; }
 
 .userListingStyle {
+  padding: 10px;
   background-color: #BDD4DE;
   border: 1px solid #2B3A42;
   border-radius: 5px;
@@ -5820,7 +5874,7 @@ h4 {
   color: #FF530D; }
 
 p {
-  color: #fff; }
+  color: #2B3A42; }
 
 .topUserHeading {
   color: #FF530D; }
@@ -5836,5 +5890,17 @@ p {
   background-image: url("http://grabow.herokuapp.com/files/dalaran/3383df1c417a64f960783b503e25205d_BASEBALL%20PHOTO.jpg");
   background-size: cover;
   position: relative; }
+
+.claimFormStyle {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 25px; }
+
+.claimFormHelper {
+  color: #2B3A42; }
+
+.batterPadding {
+  padding-top: 10px; }
 
 /*# sourceMappingURL=app.css.map */
